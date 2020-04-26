@@ -35,8 +35,8 @@ class RainyHub(QMainWindow):
         self.setCentralWidget(self.window_frame)
 
     def open_rainydm(self):
+        self.rainy_dm = DMTool(os.path.join(os.getcwd(), "RainyDB"))
         os.chdir("RainyDM")
-        self.rainy_dm = DMTool()
         self.close()
         self.rainy_dm.show()
 
