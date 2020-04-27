@@ -17,6 +17,7 @@ class RainyHub(QMainWindow):
         self.bind_signals()
         self._display_ui()
         self.setStyleSheet(open(os.path.join("assets", "styles", "default.css")).read())
+        self.db_path = os.path.join(os.getcwd(), "RainyDB")
 
     def _setup_ui(self):
         self.window_frame = QFrame()
@@ -35,10 +36,16 @@ class RainyHub(QMainWindow):
         self.setCentralWidget(self.window_frame)
 
     def open_rainydm(self):
-        self.rainy_dm = DMTool(os.path.join(os.getcwd(), "RainyDB"))
         os.chdir("RainyDM")
+        self.rainy_dm = DMTool(self.db_path)
         self.close()
         self.rainy_dm.show()
+
+    def open_rainybag(self):
+        os.chdir("RainyBAG")
+        self.rainy_bag = RainyBAG(self.db_path)
+        self.close()
+        self.rainy_bag.show()
 
 
 def open_hub():
