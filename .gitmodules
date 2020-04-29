@@ -4,6 +4,3 @@
 [submodule "RainyDB"]
 	path = RainyDB
 	url = ../RainyDB.git
-[submodule "RainyBG"]
-	path = RainyBG
-	url = ../RainyBG.git
