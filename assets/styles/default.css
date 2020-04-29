@@ -1,9 +1,0 @@
-RainyHub {
-    background-color: rgb(120, 120, 120);
-}
-
-DMButton {
-    border-image: url(assets/rainyDM_logo.png);
-    background-color: rgb(180, 180, 180);
-    border: 3px solid black;
-}

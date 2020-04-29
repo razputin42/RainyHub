@@ -1,4 +1,5 @@
 from RainyDM.RainyDM import DMTool
+from Rain
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFrame, QHBoxLayout, QPushButton, QSizePolicy
 import sys, os
 
@@ -7,6 +8,10 @@ class DMButton(QPushButton):
     def __init__(self):
         super().__init__()
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+
+class BGButton(DMButton):
+    pass
 
 
 class RainyHub(QMainWindow):
@@ -23,14 +28,16 @@ class RainyHub(QMainWindow):
         self.window_frame = QFrame()
         self.window_frame.setLayout(QHBoxLayout())
         # self.window_frame.layout().setContentsMargins(0, 0, 0, 0)
-        button = DMButton()
-        button.clicked.connect(self.open_rainydm)
-        self.window_frame.layout().addWidget(button)
+        self.dm_button = DMButton()
+        self.bg_button = BGButton()
+        self.window_frame.layout().addWidget(self.dm_button)
+        self.window_frame.layout().addWidget(self.bg_button)
         self.setFixedSize(300, 300)
         self.setWindowTitle("RainyHub")
 
     def bind_signals(self):
-        pass
+        self.dm_button.clicked.connect(self.open_rainydm)
+        self.bg_button.clicked.connect(self.open_rainybg)
 
     def _display_ui(self):
         self.setCentralWidget(self.window_frame)
@@ -42,8 +49,8 @@ class RainyHub(QMainWindow):
         self.rainy_dm.show()
 
     def open_rainybag(self):
-        os.chdir("RainyBAG")
-        self.rainy_bag = RainyBAG(self.db_path)
+        os.chdir("RainyBG")
+        self.rainy_bag = RainyBG(self.db_path)
         self.close()
         self.rainy_bag.show()
 
